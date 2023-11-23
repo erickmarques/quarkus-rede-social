@@ -7,5 +7,6 @@ Projeto de API Rest para uma simples rede social com usuários, posts e seguidor
 * Postgres
 * FlyWay
 * Maven
+* Swagger
 
 Fique à vontade para contribuir com este projeto.
