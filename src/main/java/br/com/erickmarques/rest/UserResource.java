@@ -6,6 +6,7 @@ import br.com.erickmarques.rest.dto.UserRequest;
 import br.com.erickmarques.rest.dto.UserResponse;
 import br.com.erickmarques.rest.filters.Authorize;
 import br.com.erickmarques.rest.mapper.ModelMapperConverter;
+import br.com.erickmarques.rest.utils.Utils;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -27,6 +28,7 @@ public class UserResource {
     @Transactional
     public Response createUser(@Valid UserRequest userRequest ){
         var user = dtoToEntity(userRequest);
+        user.setPassword(Utils.stringToMd5(userRequest.getPassword()));
 
         repository.persist(user);
 
@@ -68,7 +70,7 @@ public class UserResource {
             user.setName(userRequest.getName());
             user.setBirthday(userRequest.getBirthday());
             user.setEmail(userRequest.getEmail());
-            user.setPassword(userRequest.getPassword());
+            user.setPassword(Utils.stringToMd5(userRequest.getPassword()));
 
             return Response.noContent().build();
         }

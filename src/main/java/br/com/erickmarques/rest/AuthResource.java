@@ -3,6 +3,7 @@ package br.com.erickmarques.rest;
 import br.com.erickmarques.domain.model.User;
 import br.com.erickmarques.domain.model.repository.UserRepository;
 import br.com.erickmarques.rest.dto.UserLogin;
+import br.com.erickmarques.rest.utils.Utils;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -25,7 +26,6 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @Path("/oauth/token")
 @AllArgsConstructor
-@NoArgsConstructor
 public class AuthResource {
 
     private UserRepository userRepository;
@@ -40,7 +40,10 @@ public class AuthResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response token( UserLogin userLogin ) {
         try{
-            User user = userRepository.findByPerEmailAndPass(userLogin.getEmail(), userLogin.getPassword());
+            User user = userRepository
+                    .findByPerEmailAndPass(
+                            userLogin.getEmail(),
+                            Utils.stringToMd5(userLogin.getPassword()));
 
             if(user != null) {
                 String jwtToken = Jwts.builder()
