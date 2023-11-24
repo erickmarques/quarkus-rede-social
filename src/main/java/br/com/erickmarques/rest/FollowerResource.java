@@ -7,6 +7,7 @@ import br.com.erickmarques.domain.model.repository.UserRepository;
 import br.com.erickmarques.rest.dto.FollowersPerUserResponse;
 import br.com.erickmarques.rest.dto.FollowerRequest;
 import br.com.erickmarques.rest.dto.FollowerResponse;
+import br.com.erickmarques.rest.filters.Authorize;
 import br.com.erickmarques.rest.mapper.ModelMapperConverter;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @AllArgsConstructor
+@Authorize
 public class FollowerResource {
 
     private FollowerRepository repository;

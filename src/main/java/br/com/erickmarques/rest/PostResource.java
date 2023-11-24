@@ -7,6 +7,7 @@ import br.com.erickmarques.domain.model.repository.PostRepository;
 import br.com.erickmarques.domain.model.repository.UserRepository;
 import br.com.erickmarques.rest.dto.PostRequest;
 import br.com.erickmarques.rest.dto.PostResponse;
+import br.com.erickmarques.rest.filters.Authorize;
 import br.com.erickmarques.rest.mapper.ModelMapperConverter;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Sort;
@@ -21,6 +22,7 @@ import lombok.AllArgsConstructor;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @AllArgsConstructor
+@Authorize
 public class PostResource {
 
     private PostRepository repository;

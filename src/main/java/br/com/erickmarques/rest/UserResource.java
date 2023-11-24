@@ -4,6 +4,7 @@ import br.com.erickmarques.domain.model.User;
 import br.com.erickmarques.domain.model.repository.UserRepository;
 import br.com.erickmarques.rest.dto.UserRequest;
 import br.com.erickmarques.rest.dto.UserResponse;
+import br.com.erickmarques.rest.filters.Authorize;
 import br.com.erickmarques.rest.mapper.ModelMapperConverter;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.transaction.Transactional;
@@ -17,6 +18,7 @@ import lombok.AllArgsConstructor;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @AllArgsConstructor
+@Authorize
 public class UserResource {
 
     private UserRepository repository;
@@ -64,7 +66,9 @@ public class UserResource {
 
         if(user != null){
             user.setName(userRequest.getName());
-            user.setAge(userRequest.getAge());
+            user.setBirthday(userRequest.getBirthday());
+            user.setEmail(userRequest.getEmail());
+            user.setPassword(userRequest.getPassword());
 
             return Response.noContent().build();
         }
