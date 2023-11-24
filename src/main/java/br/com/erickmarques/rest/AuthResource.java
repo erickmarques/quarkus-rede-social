@@ -24,7 +24,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-@Path("/oauth/token")
+@Path("/token")
 @AllArgsConstructor
 public class AuthResource {
 
