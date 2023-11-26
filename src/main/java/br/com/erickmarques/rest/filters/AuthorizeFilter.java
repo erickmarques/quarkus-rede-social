@@ -24,7 +24,7 @@ public class AuthorizeFilter implements ContainerRequestFilter {
 
     //alterar em breve
     private final SecretKey KEY = Keys
-            .hmacShaKeyFor("7f-j&CKk=coNzZc0y7_4obMP?#TfcYq%fcD0mDpenW2nc!lfGoZ|d?f&RNbDHUX6"
+            .hmacShaKeyFor("###################ErickMarquesAndradeBackEnd###################"
             .getBytes(StandardCharsets.UTF_8));
 
     @Override
